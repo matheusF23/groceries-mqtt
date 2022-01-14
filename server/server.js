@@ -7,7 +7,7 @@ const request_topic = 'groceries-request'
 
 server.on('connect', () => {
   console.log("Conectado ao broker MQTT")
-  server.publish(response_topic, 'WELCOME-|-Seja bem vindo ao mercadinho SD', { qos: 2, retain: true })
+  server.publish(response_topic, 'WELCOME', { qos: 2, retain: true })
 
   server.subscribe(request_topic, (err) => {
     if (err) {
