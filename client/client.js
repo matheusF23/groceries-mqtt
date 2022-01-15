@@ -19,11 +19,12 @@ client.on('connect', () => {
 client.on("message", (topic, message) => {
   if (topic === response_topic) {
     try {
-      
+
       const msg = message.toString().trim()
       const request = app(msg)
 
       if (msg.split('-|-')[0] === 'ERROR' || request === 'finished') {
+        client.publish(request_topic, 'FINISHED', { qos: 2 })
         client.end()
       }
 

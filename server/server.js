@@ -24,6 +24,10 @@ server.on("message", (topic, message) => {
       const msg = message.toString().trim()
       console.log(`[x] Mensagem recebida: ${msg}`)
 
+      if (msg.split('-|-')[0] === 'FINISHED') {
+        server.end()
+      }
+
       const response = app(msg)
 
       server.publish(response_topic, response, { qos: 2 })
